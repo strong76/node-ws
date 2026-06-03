@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
+    <title>Discord Translation Bot Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -12,711 +12,738 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
+        
         body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
         }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
+        
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
         }
-
-        .nav-container {
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border-left: 5px solid #7289da;
+        }
+        
+        h1 {
+            color: #7289da;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #b9bbbe;
+            font-size: 1.2rem;
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: rgba(30, 31, 34, 0.9);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border-top: 4px solid #7289da;
+        }
+        
+        .card h2 {
+            color: #7289da;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card h2 i {
+            font-size: 1.4rem;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #43b581;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-dot.offline {
+            background-color: #f04747;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .control-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b9bbbe;
+        }
+        
+        select, input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: #202225;
+            border: 1px solid #40444b;
+            border-radius: 8px;
+            color: #f0f0f0;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: monospace;
+        }
+        
+        .btn {
+            background: #7289da;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            background: #677bc4;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background: #ed4245;
+        }
+        
+        .btn-danger:hover {
+            background: #c03537;
+        }
+        
+        .btn-success {
+            background: #3ba55c;
+        }
+        
+        .btn-success:hover {
+            background: #2d8b4a;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .translation-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .translation-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .translation-result {
+            background: #202225;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 60px;
+            border-left: 4px solid #3ba55c;
+        }
+        
+        .code-section {
+            margin-top: 40px;
+        }
+        
+        .code-container {
+            background: #1e1f22;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .code-header {
+            background: #2f3136;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
+        
+        .code-header h3 {
+            color: #7289da;
         }
-
-        .logo i {
-            font-size: 2rem;
+        
+        pre {
+            padding: 25px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
         }
-
-        nav ul {
-            display: flex;
-            list-style: none;
+        
+        .language-python {
+            color: #f8f8f2;
         }
-
-        nav ul li {
-            margin-left: 2rem;
+        
+        .token-keyword {
+            color: #ff79c6;
         }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
+        
+        .token-function {
+            color: #50fa7b;
         }
-
-        nav ul li a:hover {
-            color: var(--accent);
+        
+        .token-string {
+            color: #f1fa8c;
         }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
+        
+        .token-comment {
+            color: #6272a4;
         }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
+        
         .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
             display: flex;
-            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
+        
+        .stat-box {
+            background: rgba(30, 31, 34, 0.9);
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex: 1;
+            min-width: 150px;
         }
-
-        .mobile-menu {
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #7289da;
+        }
+        
+        .stat-label {
+            color: #b9bbbe;
+            margin-top: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #b9bbbe;
+            border-top: 1px solid #40444b;
+        }
+        
+        .response-message {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-top: 15px;
             display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
         }
-
-        @media (max-width: 992px) {
-            .about-content {
+        
+        .success {
+            background: rgba(59, 165, 92, 0.2);
+            border-left: 4px solid #3ba55c;
+            display: block;
+        }
+        
+        .error {
+            background: rgba(237, 66, 69, 0.2);
+            border-left: 4px solid #ed4245;
+            display: block;
+        }
+        
+        @media (max-width: 900px) {
+            .dashboard {
                 grid-template-columns: 1fr;
             }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
+            .btn-group {
                 flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
             }
             
             .stats {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-discord"></i> Discord Translation Bot</h1>
+            <p class="subtitle">Multi-language real-time translation bot control panel</p>
+        </header>
+        
+        <div class="dashboard">
+            <div class="card">
+                <h2><i class="fas fa-cogs"></i> Bot Control</h2>
+                
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Bot Status: Online</span>
+                </div>
+                
+                <div class="control-group">
+                    <label for="apiKey"><i class="fas fa-key"></i> API Key</label>
+                    <input type="password" id="apiKey" placeholder="Enter translation API key" value="sk-********************">
+                </div>
+                
+                <div class="control-group">
+                    <label for="defaultLang"><i class="fas fa-globe"></i> Default Target Language</label>
+                    <select id="defaultLang">
+                        <option value="zh">Simplified Chinese</option>
+                        <option value="en" selected>English</option>
+                        <option value="ja">Japanese</option>
+                        <option value="ko">Korean</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="es">Spanish</option>
+                        <option value="ru">Russian</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="autoChannels"><i class="fas fa-broadcast-tower"></i> Auto-Translation Channel IDs (comma separated)</label>
+                    <input type="text" id="autoChannels" placeholder="Example: 123456789, 987654321" value="987654321, 123456789">
+                </div>
+                
+                <div class="btn-group">
+                    <button class="btn" id="saveBtn">
+                        <i class="fas fa-save"></i> Save Configuration
+                    </button>
+                    <button class="btn btn-success" id="restartBtn">
+                        <i class="fas fa-redo"></i> Restart Bot
+                    </button>
+                    <button class="btn btn-danger" id="stopBtn">
+                        <i class="fas fa-stop"></i> Stop Bot
+                    </button>
+                </div>
+                
+                <div id="controlMessage" class="response-message"></div>
             </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
             
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
+            <div class="card">
+                <h2><i class="fas fa-language"></i> Translation Demo</h2>
                 
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                <div class="translation-demo">
+                    <div class="translation-box">
+                        <label for="sourceText"><i class="fas fa-keyboard"></i> Enter text to translate</label>
+                        <textarea id="sourceText" placeholder="Enter text to translate...">Hello! How are you today? This is a test of the Discord translation bot.</textarea>
+                    </div>
                     
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
+                    <div class="control-group">
+                        <label for="targetLang"><i class="fas fa-arrow-right"></i> Target Language</label>
+                        <select id="targetLang">
+                            <option value="zh" selected>Simplified Chinese</option>
+                            <option value="en">English</option>
+                            <option value="ja">Japanese</option>
+                            <option value="ko">Korean</option>
+                            <option value="fr">French</option>
+                            <option value="de">German</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn" id="translateBtn">
+                        <i class="fas fa-exchange-alt"></i> Translate Text
+                    </button>
+                    
+                    <div class="translation-box">
+                        <label><i class="fas fa-language"></i> Translation Result</label>
+                        <div class="translation-result" id="translationResult">
+                            Translation result will appear here...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-value" id="totalTranslations">1,247</div>
+                <div class="stat-label">Total Translations</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="activeChannels">8</div>
+                <div class="stat-label">Active Channels</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="supportedLangs">12</div>
+                <div class="stat-label">Supported Languages</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="uptime">99.2%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+        </div>
+        
+        <div class="code-section">
+            <h2><i class="fas fa-code"></i> Python Backend Code Example</h2>
+            <p>Below is a simple Python code example for a Discord translation bot:</p>
+            
+            <div class="code-container">
+                <div class="code-header">
+                    <h3>discord_translator.py</h3>
+                    <button class="btn" id="copyCodeBtn">
+                        <i class="far fa-copy"></i> Copy Code
+                    </button>
+                </div>
+                <pre><code class="language-python">import discord
+from discord.ext import commands
+import googletrans
+from googletrans import Translator
+import asyncio
+import json
+import os
+
+# Load configuration
+with open('config.json', 'r') as f:
+    config = json.load(f)
+
+# Initialize translator
+translator = Translator()
+
+# Set bot prefix and intents
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+class TranslationBot(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+        self.auto_channels = config.get('auto_channels', [])
+        self.default_lang = config.get('default_lang', 'en')
+        
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print(f'{self.bot.user} has logged in successfully!')
+        print(f'Default translation language: {self.default_lang}')
+        print(f'Auto-translation channels: {self.auto_channels}')
+        
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        # Ignore bot's own messages
+        if message.author == self.bot.user:
+            return
+            
+        # Check if in auto-translation channels
+        if str(message.channel.id) in self.auto_channels and not message.content.startswith('!'):
+            # Detect message language
+            detected = translator.detect(message.content)
+            src_lang = detected.lang
+            
+            # Translate if message language is not default language
+            if src_lang != self.default_lang:
+                try:
+                    translation = translator.translate(
+                        message.content, 
+                        src=src_lang, 
+                        dest=self.default_lang
+                    )
+                    
+                    # Create embed message to show translation
+                    embed = discord.Embed(
+                        title="Translation Result",
+                        color=discord.Color.blue()
+                    )
+                    embed.add_field(name="Original", value=message.content, inline=False)
+                    embed.add_field(name="Translation", value=translation.text, inline=False)
+                    embed.set_footer(text=f"{src_lang} → {self.default_lang}")
+                    
+                    await message.channel.send(embed=embed)
+                except Exception as e:
+                    print(f"Translation error: {e}")
+                    
+    @commands.command(name="translate", aliases=["tr"])
+    async def translate_command(self, ctx, *, text):
+        """Translate text to default language"""
+        try:
+            translation = translator.translate(text, dest=self.default_lang)
+            
+            embed = discord.Embed(
+                title="Translation Result",
+                color=discord.Color.green()
+            )
+            embed.add_field(name="Original", value=text, inline=False)
+            embed.add_field(name="Translation", value=translation.text, inline=False)
+            embed.set_footer(text=f"{translation.src} → {self.default_lang}")
+            
+            await ctx.send(embed=embed)
+        except Exception as e:
+            await ctx.send(f"Translation error: {e}")
+            
+    @commands.command(name="setlang")
+    @commands.has_permissions(administrator=True)
+    async def set_language(self, ctx, lang_code):
+        """Set default translation language"""
+        supported_langs = googletrans.LANGUAGES
+        
+        if lang_code in supported_langs:
+            self.default_lang = lang_code
+            config['default_lang'] = lang_code
+            
+            # Save to configuration file
+            with open('config.json', 'w') as f:
+                json.dump(config, f, indent=4)
+                
+            await ctx.send(f"Default translation language set to: {supported_langs[lang_code]} ({lang_code})")
+        else:
+            await ctx.send(f"Unsupported language code. Please use valid language codes like: en, zh, ja, ko, etc.")
+            
+    @commands.command(name="autotranslate")
+    @commands.has_permissions(administrator=True)
+    async def toggle_auto_translate(self, ctx):
+        """Enable/disable auto-translation in current channel"""
+        channel_id = str(ctx.channel.id)
+        
+        if channel_id in self.auto_channels:
+            self.auto_channels.remove(channel_id)
+            status = "Disabled"
+        else:
+            self.auto_channels.append(channel_id)
+            status = "Enabled"
+            
+        config['auto_channels'] = self.auto_channels
+        
+        with open('config.json', 'w') as f:
+            json.dump(config, f, indent=4)
+            
+        await ctx.send(f"Auto-translation {status} in this channel.")
+
+async def main():
+    async with bot:
+        await bot.add_cog(TranslationBot(bot))
+        await bot.start(config['discord_token'])
+
+if __name__ == "__main__":
+    asyncio.run(main())</code></pre>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Discord Translation Bot Control Panel &copy; 2026 | Built with Python | Supports multi-language real-time translation</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Simulate API responses
+        function showMessage(elementId, message, isSuccess = true) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = isSuccess ? 'response-message success' : 'response-message error';
+            
+            setTimeout(() => {
+                element.style.opacity = '1';
+            }, 10);
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    element.className = 'response-message';
+                }, 500);
+            }, 3000);
+        }
+        
+        // Save configuration
+        document.getElementById('saveBtn').addEventListener('click', function() {
+            const apiKey = document.getElementById('apiKey').value;
+            const defaultLang = document.getElementById('defaultLang').value;
+            const autoChannels = document.getElementById('autoChannels').value;
+            
+            // This should be sent to backend API
+            console.log('Saving configuration:', { apiKey, defaultLang, autoChannels });
+            
+            // Simulate API call
+            setTimeout(() => {
+                showMessage('controlMessage', 'Configuration saved successfully!', true);
+            }, 300);
+        });
+        
+        // Restart bot
+        document.getElementById('restartBtn').addEventListener('click', function() {
+            const btn = this;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Restarting...';
+            btn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                // Toggle status indicator
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                
+                statusDot.classList.add('offline');
+                statusText.textContent = 'Bot Status: Restarting...';
+                
+                setTimeout(() => {
+                    statusDot.classList.remove('offline');
+                    statusText.textContent = 'Bot Status: Online';
+                    showMessage('controlMessage', 'Bot restarted successfully!', true);
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Stop bot
+        document.getElementById('stopBtn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to stop the translation bot?')) {
+                const btn = this;
+                const originalText = btn.innerHTML;
+                
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Stopping...';
+                
+                // Simulate API call
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    
+                    // Update status indicator
+                    const statusDot = document.getElementById('statusDot');
+                    const statusText = document.getElementById('statusText');
+                    
+                    statusDot.classList.add('offline');
+                    statusText.textContent = 'Bot Status: Offline';
+                    
+                    showMessage('controlMessage', 'Bot has been stopped.', false);
+                }, 1000);
+            }
+        });
+        
+        // Translate text
+        document.getElementById('translateBtn').addEventListener('click', function() {
+            const sourceText = document.getElementById('sourceText').value;
+            const targetLang = document.getElementById('targetLang').value;
+            const resultElement = document.getElementById('translationResult');
+            
+            if (!sourceText.trim()) {
+                showMessage('controlMessage', 'Please enter text to translate.', false);
+                return;
+            }
+            
+            const btn = this;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Translating...';
+            btn.disabled = true;
+            
+            // Simulate translation API call
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                
+                // Simulate translation results
+                const translations = {
+                    'zh': '你好！你今天好吗？这是Discord翻译机器人的测试。',
+                    'en': 'Hello! How are you today? This is a test of the Discord translation bot.',
+                    'ja': 'こんにちは！今日はお元気ですか？これはDiscord翻訳ボットのテストです。',
+                    'ko': '안녕하세요! 오늘 어떠세요? 이것은 Discord 번역 봇 테스트입니다。',
+                    'fr': 'Bonjour! Comment allez-vous aujourd\'hui? Ceci est un test du bot de traduction Discord.',
+                    'de': 'Hallo! Wie geht es dir heute? Dies ist ein Test des Discord-Übersetzungsbots.'
+                };
+                
+                resultElement.textContent = translations[targetLang] || 'Translation result will appear here...';
+                
+                // Update total translation count
+                const totalElement = document.getElementById('totalTranslations');
+                let count = parseInt(totalElement.textContent.replace(',', ''));
+                totalElement.textContent = (count + 1).toLocaleString();
+                
+                showMessage('controlMessage', 'Text translated successfully!', true);
+            }, 800);
+        });
+        
+        // Copy code
+        document.getElementById('copyCodeBtn').addEventListener('click', function() {
+            const codeElement = document.querySelector('pre code');
+            const textArea = document.createElement('textarea');
+            textArea.value = codeElement.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            const btn = this;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-check"></i> Copied';
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        });
+        
+        // Simulate real-time statistics updates
+        function updateStats() {
+            // Simulate active channels count change
+            const channelsElement = document.getElementById('activeChannels');
+            let channels = parseInt(channelsElement.textContent);
+            
+            // Randomly increase or decrease by 1 channel
+            const change = Math.random() > 0.5 ? 1 : -1;
+            const newChannels = Math.max(1, channels + change);
+            
+            if (newChannels !== channels) {
+                channelsElement.textContent = newChannels;
+            }
+            
+            // Update every 10 seconds
+            setTimeout(updateStats, 10000);
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start updating statistics
+            updateStats();
+            
+            // Simulate initial translation
+            document.getElementById('translateBtn').click();
         });
     </script>
 </body>
-
 </html>
